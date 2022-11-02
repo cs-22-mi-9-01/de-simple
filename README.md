@@ -1,4 +1,4 @@
-This version of the DE embedding repository contains more prints, and adapts to using CPU or GPU when needed
+This version of the DE embedding repository contains more prints, up to date dependencies, and adapts to using CPU or GPU when needed
 
 ## Diachronic Embedding for Temporal Knowledge Graph Completion
 This repository contains code for the reprsentation proposed in [Diachronic Embedding for Temporal Knowledge Graph Completion](https://arxiv.org/pdf/1907.03143.pdf) paper.
