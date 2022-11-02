@@ -28,8 +28,6 @@ parser.add_argument('-se_prop', help='Static embedding proportion', type=float, 
 
 args = parser.parse_args()
 
-dataset = Dataset(args.dataset)
-
 params = Params(
     ne=args.ne, 
     bsize=args.bsize, 
@@ -41,6 +39,8 @@ params = Params(
     save_each=args.save_each, 
     se_prop=args.se_prop
 )
+
+dataset = Dataset(params, args.dataset)
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
 params.device = device
@@ -69,6 +69,6 @@ for idx in validation_idx:
 # testing the best chosen model on the test set
 print("Best epoch: " + best_index)
 model_path = model_prefix + best_index + ".chkpnt"
-tester = Tester(dataset, model_path, "test")
+tester = Tester(params, dataset, model_path, "test")
 tester.test()
 

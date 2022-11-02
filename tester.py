@@ -15,7 +15,8 @@ from measure import Measure
 
 
 class Tester:
-    def __init__(self, dataset, model_path, valid_or_test):
+    def __init__(self, params, dataset, model_path, valid_or_test):
+        self.params = params
         self.model = torch.load(model_path)
         self.model.eval()
         self.dataset = dataset
@@ -37,7 +38,7 @@ class Tester:
         elif raw_or_fil == "fil":
             ret_facts = [tuple(fact)] + list(set(ret_facts) - self.dataset.all_facts_as_tuples)
 
-        return shredFacts(np.array(ret_facts))
+        return shredFacts(np.array(ret_facts), self.params)
 
     def test(self):
         print("Starting test")

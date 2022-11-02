@@ -16,12 +16,12 @@ from scripts import shredFacts
 class Dataset:
     """Implements the specified dataloader"""
 
-    def __init__(self,
-                 ds_name):
+    def __init__(self, params, ds_name):
         """
         Params:
                 ds_name : name of the dataset 
         """
+        self.params = params
         self.name = ds_name
         # self.ds_path = "<path-to-dataset>" + ds_name.lower() + "/"
         self.ds_path = "datasets/" + ds_name.lower() + "/"
@@ -135,7 +135,7 @@ class Dataset:
 
     def nextBatch(self, batch_size, neg_ratio=1):
         bp_facts = self.nextPosBatch(batch_size)
-        batch = shredFacts(self.addNegFacts2(bp_facts, neg_ratio))
+        batch = shredFacts(self.addNegFacts2(bp_facts, neg_ratio), self.params)
         return batch
 
     def wasLastBatch(self):
