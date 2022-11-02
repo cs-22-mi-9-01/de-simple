@@ -47,7 +47,7 @@ class Trainer:
             while not last_batch:
                 batch_index += 1
                 if batch_index == 1 or batch_index % 50:
-                    print("Processing batch " + str(batch_index) + "/" + str(batch_index + 50 - (batch_index % 50)))
+                    print("Processing batch " + str(batch_index) + "-" + str(batch_index + 50 - (batch_index % 50)))
                 optimizer.zero_grad()
 
                 heads, rels, tails, years, months, days = self.dataset.nextBatch(self.params.bsize,
