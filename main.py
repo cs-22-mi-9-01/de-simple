@@ -5,6 +5,7 @@
 # LICENSE file in the root directory of this source tree.
 #
 import argparse
+import torch
 from dataset import Dataset
 from trainer import Trainer
 from tester import Tester
@@ -40,6 +41,13 @@ params = Params(
     save_each=args.save_each, 
     se_prop=args.se_prop
 )
+
+device = "cuda" if torch.cuda.is_available() else "cpu"
+params.device = device
+
+print("Starting...")
+print("Settings:")
+print(params.str_())
 
 trainer = Trainer(dataset, params, args.model)
 trainer.train()
