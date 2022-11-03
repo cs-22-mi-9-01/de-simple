@@ -46,7 +46,7 @@ class Trainer:
 
             while not last_batch:
                 batch_index += 1
-                if batch_index == 1 or batch_index % 50:
+                if batch_index == 1 or (batch_index % 50 == 0):
                     print("Processing batch " + str(batch_index) + "-" + str(batch_index + 50 - (batch_index % 50)))
                 optimizer.zero_grad()
 
@@ -73,10 +73,12 @@ class Trainer:
                 self.saveModel(epoch)
 
     def saveModel(self, chkpnt):
-        print("Saving the model")
         directory = "models/" + self.model_name + "/" + self.dataset.name + "/"
         if not os.path.exists(directory):
             os.makedirs(directory)
 
-        torch.save(self.model, directory + self.params.str_() + "_" + str(chkpnt) + ".chkpnt")
+        path = directory + self.params.str_() + "_" + str(chkpnt) + ".chkpnt"
+        print("Saving the model: " + path)
+
+        torch.save(self.model, path)
 

@@ -17,6 +17,7 @@ from measure import Measure
 class Tester:
     def __init__(self, params, dataset, model_path, valid_or_test):
         self.params = params
+        self.model_path = model_path
         self.model = torch.load(model_path)
         self.model.eval()
         self.dataset = dataset
@@ -41,11 +42,13 @@ class Tester:
         return shredFacts(np.array(ret_facts), self.params)
 
     def test(self):
-        print("Starting test")
+        print("Starting test.")
+        print("Model: " + str(self.model_path))
         for i, fact in enumerate(self.dataset.data[self.valid_or_test]):
             settings = ["fil"]
             for raw_or_fil in settings:
-                print("Evaluating fact " + str(i) + " ...")
+                if i == 0 or (i % 1000 == 0):
+                    print("Evaluating facts " + str(i) + "-" + str(i + 1000 - (i % 1000)))
                 for head_or_tail in ["head", "tail"]:
                     heads, rels, tails, years, months, days = self.replaceAndShred(fact, raw_or_fil, head_or_tail)
                     sim_scores = self.model(heads, rels, tails, years, months, days).cpu().data.numpy()

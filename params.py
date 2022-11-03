@@ -7,6 +7,7 @@
 class Params:
 
     def __init__(self,
+                 model="DE_TransE",
                  ne=500,
                  bsize=512,
                  lr=0.001,
@@ -16,6 +17,7 @@ class Params:
                  dropout=0.4,
                  save_each=50,
                  se_prop=0.9):
+        self.model = model
         self.ne = ne
         self.bsize = bsize
         self.lr = lr
@@ -29,7 +31,12 @@ class Params:
         self.device = "cpu"
 
     def str_(self):
-        return "ne: " + str(self.ne) + "\nbsize: " + str(self.bsize) + "\nlr: " + str(self.lr) + "\nreg_lambda: " + str(
+        return str(self.ne) + "_" + str(self.bsize) + "_" + str(self.lr) + "_" + str(self.reg_lambda) + "_" + str(
+            self.s_emb_dim) + "_" + str(self.neg_ratio) + "_" + str(self.dropout) + "_" + str(
+            self.t_emb_dim) + "_" + str(self.save_each) + "_" + str(self.se_prop)
+
+    def str_pretty(self):
+        return "model: " + str(self.model) + "\ndevice: " + str(self.device) + "\nne: " + str(self.ne) + "\nbsize: " + str(self.bsize) + "\nlr: " + str(self.lr) + "\nreg_lambda: " + str(
             self.reg_lambda) + "\ns_emb_dim: " + str(self.s_emb_dim) + "\nneg_ratio: " + str(
             self.neg_ratio) + "\ndropout: " + str(self.dropout) + "\nt_emb_dim: " + str(
             self.t_emb_dim) + "\nsave_each: " + str(self.save_each) + "\nse_prop: " + str(self.se_prop)
