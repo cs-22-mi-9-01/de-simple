@@ -6,7 +6,7 @@ Stage: build
     #touch ${SINGULARITY_ROOTFS}/file2
 
 %files
-    ~/DE/environment.yml
+    ./environment.yml
     ./de-simple/* ./
 
 %environment
@@ -14,7 +14,9 @@ Stage: build
     #export LC_ALL=C
 
 %post
-    /opt/conda/bin/conda env create -f ./environment.yml
+    pwd
+    ls
+    /opt/conda/bin/conda env create -f environment.yml
 
 %runscript
     echo "Container was created $NOW"
