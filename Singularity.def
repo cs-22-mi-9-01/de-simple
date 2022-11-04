@@ -1,0 +1,32 @@
+BootStrap: docker
+From: continuumio/anaconda3
+Stage: build
+
+%setup
+    #touch ${SINGULARITY_ROOTFS}/file2
+
+%files
+    ~/DE/environment.yml
+    ./de-simple/* ./
+
+%environment
+    #export LISTEN_PORT=12345
+    #export LC_ALL=C
+
+%post
+    /opt/conda/bin/conda env create -f ./environment.yml
+
+%runscript
+    echo "Container was created $NOW"
+    echo "Arguments received: $*"
+    exec echo "$@"
+
+%startscript
+    #nc -lp $LISTEN_PORT
+
+%test
+    echo "Test script"
+
+%labels
+    Author jwli21@student.aau.dk
+    Version v0.0.1

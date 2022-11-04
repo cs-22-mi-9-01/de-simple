@@ -1,0 +1,9 @@
+name: tkgc
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+dependencies:
+  - numpy
+  - pytorch
+
