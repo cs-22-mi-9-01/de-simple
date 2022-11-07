@@ -1,27 +1,43 @@
-BootStrap: docker
-From: continuumio/miniconda3
-Stage: build
+Bootstrap: docker
+From: ubuntu:18.04
 
 %setup
-    #touch ${SINGULARITY_ROOTFS}/file2
+    mkdir /app/
 
 %files
-    ./environment.yml
-    ./de-simple/* ./
-
-%environment
-    #export LISTEN_PORT=12345
-    #export LC_ALL=C
+    ./environment.yml /app/environment.yml
+    ./de-simple/* /app/
 
 %post
-    /opt/conda/bin/conda env create -f environment.yml
-    /opt/miniconda/bin/activate tkgc
+    # Set working dir
+    cd /app/
+
+    # Pre-requisite installs
+    apt-get -y update
+    apt-get -y install wget
+
+    # miniconda3: get miniconda3
+    wget https://repo.anaconda.com/miniconda/Miniconda3-py38_4.12.0-Linux-x86_64.sh -O miniconda.sh
+
+    # install conda
+    bash miniconda.sh -b -p /opt/miniconda
+    export PATH="/opt/miniconda/bin:$PATH"
+
+    # install conda environment.yml file
+    echo ". /opt/miniconda/etc/profile.d/conda.sh" >> $SINGULARITY_ENVIRONMENT
+    echo "conda activate $(head -1 environment.yml | cut -d' ' -f2)" >> $SINGULARITY_ENVIRONMENT
+    /opt/miniconda/bin/conda env create -f environment.yml
+
+    # Activate conda env
+    . /opt/miniconda/bin/activate tkgc
+
+    # Test
+    echo "PWD and contents:"
+    pwd
+    ls
 
 %runscript
-    echo "Contents:"
-    ls
     echo "--- Start run ---"
-    #exec python main.py -dropout 0.4 -se_prop 0.68 -model DE_TransE -ne 4 -neg_ratio 2 -save_each 2
     echo "executing $@"
     exec "$@"
 
@@ -31,3 +47,8 @@ Stage: build
 %labels
     Author jwli21@student.aau.dk
     Version v0.0.2
+
+# TO CREATE THE IMAGE:
+#sudo singularity build --sandbox de-image Singularity.def
+# TO LEARN AND TEST THE MODEL:
+#sudo singularity run --writable de-sandbox python main.py -dropout 0.4 -se_prop 0.68 -model DE_TransE -ne 4 -neg_ratio 2 -save_each 2
