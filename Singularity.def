@@ -1,5 +1,5 @@
 BootStrap: docker
-From: continuumio/anaconda3
+From: continuumio/miniconda3
 Stage: build
 
 %setup
@@ -14,21 +14,20 @@ Stage: build
     #export LC_ALL=C
 
 %post
-    pwd
-    ls
     /opt/conda/bin/conda env create -f environment.yml
+    /opt/miniconda/bin/activate tkgc
 
 %runscript
-    echo "Container was created $NOW"
-    echo "Arguments received: $*"
-    exec echo "$@"
-
-%startscript
-    #nc -lp $LISTEN_PORT
+    echo "Contents:"
+    ls
+    echo "--- Start run ---"
+    #exec python main.py -dropout 0.4 -se_prop 0.68 -model DE_TransE -ne 4 -neg_ratio 2 -save_each 2
+    echo "executing $@"
+    exec "$@"
 
 %test
     echo "Test script"
 
 %labels
     Author jwli21@student.aau.dk
-    Version v0.0.1
+    Version v0.0.2
