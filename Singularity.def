@@ -51,4 +51,4 @@ From: ubuntu:18.04
 # TO CREATE THE IMAGE:
 #sudo singularity build --sandbox de-image Singularity.def
 # TO LEARN AND TEST THE MODEL:
-#sudo singularity run --writable de-sandbox python main.py -dropout 0.4 -se_prop 0.68 -model DE_TransE -ne 4 -neg_ratio 2 -save_each 2
+#sudo singularity run --writable de-image python main.py -dropout 0.4 -se_prop 0.68 -model DE_TransE -ne 4 -neg_ratio 2 -save_each 2
