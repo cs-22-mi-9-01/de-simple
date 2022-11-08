@@ -59,6 +59,6 @@ From: ubuntu:18.04
 #srun singularity run --pwd /app/ --nv --writable de-image python main.py -dropout 0.4 -se_prop 0.68 -model DE_TransE -ne 4 -neg_ratio 2 -save_each 2
 
 # Version used in paper: 
-#srun singularity run --pwd /app/ --nv --writable de-image python main.py -dropout 0.4 -se_prop 0.36 -model DE_TransE
-#srun singularity run --pwd /app/ --nv --writable de-image python main.py -dropout 0.4 -se_prop 0.36 -model DE_DistMult
-#srun singularity run --pwd /app/ --nv --writable de-image python main.py -dropout 0.4 -se_prop 0.68 -model DE_SimplE
+#srun --gres=gpu singularity run --pwd /app/ --nv --writable de-image python main.py -dropout 0.4 -se_prop 0.36 -model DE_TransE
+#srun --gres=gpu singularity run --pwd /app/ --nv --writable de-image python main.py -dropout 0.4 -se_prop 0.36 -model DE_DistMult
+#srun --gres=gpu singularity run --pwd /app/ --nv --writable de-image python main.py -dropout 0.4 -se_prop 0.68 -model DE_SimplE
