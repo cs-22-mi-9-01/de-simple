@@ -2,7 +2,7 @@ Bootstrap: docker
 From: ubuntu:18.04
 
 %setup
-    mkdir /app/
+    #mkdir /app/
 
 %files
     ./environment.yml /app/environment.yml
@@ -48,7 +48,17 @@ From: ubuntu:18.04
     Author jwli21@student.aau.dk
     Version v0.0.2
 
-# TO CREATE THE IMAGE:
-#sudo singularity build --sandbox de-image Singularity.def
-# TO LEARN AND TEST THE MODEL:
-#sudo singularity run --writable de-image python main.py -dropout 0.4 -se_prop 0.68 -model DE_TransE -ne 4 -neg_ratio 2 -save_each 2
+
+
+
+# TO CREATE THE IMAGE ON THE CLOUD:
+#srun singularity build --nv --fakeroot --sandbox de-image Singularity.def
+
+# TO LEARN AND TEST THE MODEL ON THE CLOUD:
+# Fast version:
+#srun singularity run --pwd /app/ --nv --writable de-image python main.py -dropout 0.4 -se_prop 0.68 -model DE_TransE -ne 4 -neg_ratio 2 -save_each 2
+
+# Version used in paper: 
+#srun singularity run --pwd /app/ --nv --writable de-image python main.py -dropout 0.4 -se_prop 0.36 -model DE_TransE
+#srun singularity run --pwd /app/ --nv --writable de-image python main.py -dropout 0.4 -se_prop 0.36 -model DE_DistMult
+#srun singularity run --pwd /app/ --nv --writable de-image python main.py -dropout 0.4 -se_prop 0.68 -model DE_SimplE

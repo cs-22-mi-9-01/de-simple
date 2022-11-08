@@ -5,6 +5,8 @@
 # LICENSE file in the root directory of this source tree.
 #
 import argparse
+import os
+
 import torch
 from dataset import Dataset
 from trainer import Trainer
@@ -41,10 +43,12 @@ params = Params(
     se_prop=args.se_prop
 )
 
-dataset = Dataset(params, args.dataset)
+params.base_directory = os.getcwd()
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
 params.device = device
+
+dataset = Dataset(params, args.dataset)
 
 print("Starting...")
 print("Settings:")
@@ -57,7 +61,7 @@ trainer.train()
 validation_idx = [str(int(args.save_each * (i + 1))) for i in range(args.ne // args.save_each)]
 best_mrr = -1.0
 best_index = '0'
-model_prefix = "models/" + args.model + "/" + args.dataset + "/" + params.str_() + "_"
+model_prefix = os.path.join("models", args.model, args.dataset, params.str_() + "_")
 
 for idx in validation_idx:
     model_path = model_prefix + idx + ".chkpnt"

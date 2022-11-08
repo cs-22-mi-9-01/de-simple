@@ -29,6 +29,7 @@ class Params:
         self.dropout = dropout
         self.se_prop = se_prop
         self.device = "cpu"
+        self.base_directory = None
 
     def str_(self):
         return str(self.ne) + "_" + str(self.bsize) + "_" + str(self.lr) + "_" + str(self.reg_lambda) + "_" + str(
@@ -36,7 +37,7 @@ class Params:
             self.t_emb_dim) + "_" + str(self.save_each) + "_" + str(self.se_prop)
 
     def str_pretty(self):
-        return "model: " + str(self.model) + "\ndevice: " + str(self.device) + "\nne: " + str(self.ne) + "\nbsize: " + str(self.bsize) + "\nlr: " + str(self.lr) + "\nreg_lambda: " + str(
+        return "model: " + str(self.model) + "\nbase dir: " + str(self.base_directory) + "\ndevice: " + str(self.device) + "\nne: " + str(self.ne) + "\nbsize: " + str(self.bsize) + "\nlr: " + str(self.lr) + "\nreg_lambda: " + str(
             self.reg_lambda) + "\ns_emb_dim: " + str(self.s_emb_dim) + "\nneg_ratio: " + str(
             self.neg_ratio) + "\ndropout: " + str(self.dropout) + "\nt_emb_dim: " + str(
             self.t_emb_dim) + "\nsave_each: " + str(self.save_each) + "\nse_prop: " + str(self.se_prop)

@@ -73,11 +73,11 @@ class Trainer:
                 self.saveModel(epoch)
 
     def saveModel(self, chkpnt):
-        directory = "models/" + self.model_name + "/" + self.dataset.name + "/"
+        directory = os.path.join(self.params.base_directory, "models", self.model_name, self.dataset.name)
         if not os.path.exists(directory):
             os.makedirs(directory)
 
-        path = directory + self.params.str_() + "_" + str(chkpnt) + ".chkpnt"
+        path = os.path.join(directory, self.params.str_() + "_" + str(chkpnt) + ".chkpnt")
         print("Saving the model: " + path)
 
         torch.save(self.model, path)

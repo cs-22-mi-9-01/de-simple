@@ -4,6 +4,7 @@
 # This source code is licensed under the license found in the
 # LICENSE file in the root directory of this source tree.
 #
+import os.path
 import random
 import math
 import copy
@@ -24,12 +25,12 @@ class Dataset:
         self.params = params
         self.name = ds_name
         # self.ds_path = "<path-to-dataset>" + ds_name.lower() + "/"
-        self.ds_path = "datasets/" + ds_name.lower() + "/"
+        self.ds_path = os.path.join(params.base_directory, "datasets", ds_name.lower())
         self.ent2id = {}
         self.rel2id = {}
-        self.data = {"train": self.readFile(self.ds_path + "train.txt"),
-                     "valid": self.readFile(self.ds_path + "valid.txt"),
-                     "test": self.readFile(self.ds_path + "test.txt")}
+        self.data = {"train": self.readFile(os.path.join(self.ds_path, "train.txt")),
+                     "valid": self.readFile(os.path.join(self.ds_path, "valid.txt")),
+                     "test": self.readFile(os.path.join(self.ds_path, "test.txt"))}
 
         self.start_batch = 0
         self.all_facts_as_tuples = None
