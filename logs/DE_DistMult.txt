@@ -1,0 +1,42 @@
+Tue Nov 08 13:02:13 2022
+JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+9216     batch singular qe77gi@s  R    3:12:11      1 i256-a10-10.srv.aau.dk
+
+Model: models/DE_DistMult/icews14/500_512_0.001_0.0_36_500_0.4_64_20_0.36_440.chkpnt
+Evaluating facts 0-1000
+Evaluating facts 1000-2000
+Evaluating facts 2000-3000
+Evaluating facts 3000-4000
+Evaluating facts 4000-5000
+Evaluating facts 5000-6000
+Evaluating facts 6000-7000
+Evaluating facts 7000-8000
+Evaluating facts 8000-9000
+Raw setting:
+Hit@1 = 0.0
+        Hit@3 = 0.0
+        Hit@10 = 0.0
+        MR = 0.0
+        MRR = 0.0
+
+Fil setting:
+        Hit@1 = 7017.0
+        Hit@3 = 10126.0
+        Hit@10 = 12646.0
+        MR = 4684913.0
+        MRR = 8963.254359669605
+
+~~~~~~~~~~~~~
+Raw setting:
+        Hit@1 = 0.0
+        Hit@3 = 0.0
+        Hit@10 = 0.0
+        MR = 0.0
+        MRR = 0.0
+
+Fil setting:
+        Hit@1 = 0.3914425973446391
+        Hit@3 = 0.5648778310833427
+        Hit@10 = 0.7054557625794935
+        MR = 261.3473725315185
+        MRR = 0.5000141894270671
