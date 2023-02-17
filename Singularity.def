@@ -35,8 +35,8 @@ From: ubuntu:18.04
     export SPLIT=1
 
     rm -r /app/datasets/*
-    mkdir -p /app/datasets/icews14/$SPLIT/
-    mkdir -p /app/datasets/wikidata/$SPLIT/
+    mkdir -p /app/datasets/icews14/
+    mkdir -p /app/datasets/wikidata/
     wget https://raw.githubusercontent.com/cs-23-mi-10-01/P10/main/datasets/icews14/$SPLIT/test.txt -O /app/datasets/icews14/test.txt
     wget https://raw.githubusercontent.com/cs-23-mi-10-01/P10/main/datasets/icews14/$SPLIT/valid.txt -O /app/datasets/icews14/valid.txt
     wget https://raw.githubusercontent.com/cs-23-mi-10-01/P10/main/datasets/icews14/$SPLIT/train.txt -O /app/datasets/icews14/train.txt
@@ -72,6 +72,6 @@ srun singularity build --nv --fakeroot --sandbox de-simple-wikidata14-split1 Sin
 srun singularity run --pwd /app/ --nv --writable de-simple-wikidata14-split1 python main.py -dropout 0.4 -se_prop 0.68 -model DE_TransE -ne 4 -neg_ratio 2 -save_each 2
 
 # Version used in paper: 
-srun --gres=gpu singularity run --pwd /app/ --nv --writable de-simple-wikidata14-split1 python main.py -dropout 0.4 -se_prop 0.36 -model DE_TransE
-srun --gres=gpu singularity run --pwd /app/ --nv --writable de-simple-wikidata14-split1 python main.py -dropout 0.4 -se_prop 0.36 -model DE_DistMult
-srun --gres=gpu singularity run --pwd /app/ --nv --writable de-simple-wikidata14-split1 python main.py -dropout 0.4 -se_prop 0.68 -model DE_SimplE
+srun --gres=gpu singularity run --pwd /app/ --nv --writable de-simple-wikidata14-split1 python main.py -dropout 0.4 -se_prop 0.36 -model DE_TransE -dataset icews14
+srun --gres=gpu singularity run --pwd /app/ --nv --writable de-simple-wikidata14-split1 python main.py -dropout 0.4 -se_prop 0.36 -model DE_DistMult -dataset icews14
+srun -w i256-a40-01.srv.aau.dk --gres=gpu singularity run --pwd /app/ --nv --fakeroot --writable de-simple-wikidata14-split1 python main.py -dropout 0.4 -se_prop 0.68 -model DE_SimplE -dataset icews14
