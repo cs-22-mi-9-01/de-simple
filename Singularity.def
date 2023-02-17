@@ -32,7 +32,7 @@ From: ubuntu:18.04
     . /opt/miniconda/bin/activate tkgc
 
     # Download datasets
-    export SPLIT = 1
+    echo "1" >> $SPLIT
 
     rm -r /app/datasets/*
     wget https://raw.githubusercontent.com/cs-23-mi-10-01/P10/main/datasets/icews14/$SPLIT/test.txt -O /app/datasets/icews14/test.txt
@@ -63,13 +63,13 @@ From: ubuntu:18.04
 
 
 # TO CREATE THE IMAGE ON THE CLOUD:
-#srun singularity build --nv --fakeroot --sandbox de-image Singularity.def
+srun singularity build --nv --fakeroot --sandbox de-simple-wikidata14-split1 Singularity.def
 
 # TO LEARN AND TEST THE MODEL ON THE CLOUD:
 # Fast version:
-#srun singularity run --pwd /app/ --nv --writable de-image python main.py -dropout 0.4 -se_prop 0.68 -model DE_TransE -ne 4 -neg_ratio 2 -save_each 2
+srun singularity run --pwd /app/ --nv --writable de-simple-wikidata14-split1 python main.py -dropout 0.4 -se_prop 0.68 -model DE_TransE -ne 4 -neg_ratio 2 -save_each 2
 
 # Version used in paper: 
-#srun --gres=gpu singularity run --pwd /app/ --nv --writable de-image python main.py -dropout 0.4 -se_prop 0.36 -model DE_TransE
-#srun --gres=gpu singularity run --pwd /app/ --nv --writable de-image python main.py -dropout 0.4 -se_prop 0.36 -model DE_DistMult
-#srun --gres=gpu singularity run --pwd /app/ --nv --writable de-image python main.py -dropout 0.4 -se_prop 0.68 -model DE_SimplE
+srun --gres=gpu singularity run --pwd /app/ --nv --writable de-simple-wikidata14-split1 python main.py -dropout 0.4 -se_prop 0.36 -model DE_TransE
+srun --gres=gpu singularity run --pwd /app/ --nv --writable de-simple-wikidata14-split1 python main.py -dropout 0.4 -se_prop 0.36 -model DE_DistMult
+srun --gres=gpu singularity run --pwd /app/ --nv --writable de-simple-wikidata14-split1 python main.py -dropout 0.4 -se_prop 0.68 -model DE_SimplE
