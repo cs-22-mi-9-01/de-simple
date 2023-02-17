@@ -36,6 +36,8 @@ From: ubuntu:18.04
     #echo "1" >> $SPLIT
 
     rm -r /app/datasets/*
+    mkdir -p /app/datasets/icews14/
+    mkdir -p /app/datasets/wikidata/
     wget https://raw.githubusercontent.com/cs-23-mi-10-01/P10/main/datasets/icews14/$SPLIT/test.txt -O /app/datasets/icews14/test.txt
     wget https://raw.githubusercontent.com/cs-23-mi-10-01/P10/main/datasets/icews14/$SPLIT/valid.txt -O /app/datasets/icews14/valid.txt
     wget https://raw.githubusercontent.com/cs-23-mi-10-01/P10/main/datasets/icews14/$SPLIT/train.txt -O /app/datasets/icews14/train.txt
