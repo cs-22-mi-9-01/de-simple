@@ -32,7 +32,8 @@ From: ubuntu:18.04
     . /opt/miniconda/bin/activate tkgc
 
     # Download datasets
-    echo "1" >> $SPLIT
+    export SPLIT=1
+    #echo "1" >> $SPLIT
 
     rm -r /app/datasets/*
     wget https://raw.githubusercontent.com/cs-23-mi-10-01/P10/main/datasets/icews14/$SPLIT/test.txt -O /app/datasets/icews14/test.txt
