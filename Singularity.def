@@ -40,9 +40,9 @@ From: ubuntu:18.04
     wget https://raw.githubusercontent.com/cs-23-mi-10-01/P10/main/datasets/icews14/$SPLIT/test.txt -O /app/datasets/icews14/test.txt
     wget https://raw.githubusercontent.com/cs-23-mi-10-01/P10/main/datasets/icews14/$SPLIT/valid.txt -O /app/datasets/icews14/valid.txt
     wget https://raw.githubusercontent.com/cs-23-mi-10-01/P10/main/datasets/icews14/$SPLIT/train.txt -O /app/datasets/icews14/train.txt
-    wget https://raw.githubusercontent.com/cs-23-mi-10-01/P10/main/datasets/wikidata/$SPLIT/test.txt -O /app/datasets/wikidata/test.txt
-    wget https://raw.githubusercontent.com/cs-23-mi-10-01/P10/main/datasets/wikidata/$SPLIT/valid.txt -O /app/datasets/wikidata/valid.txt
-    wget https://raw.githubusercontent.com/cs-23-mi-10-01/P10/main/datasets/wikidata/$SPLIT/train.txt -O /app/datasets/wikidata/train.txt
+    #wget https://raw.githubusercontent.com/cs-23-mi-10-01/P10/main/datasets/wikidata/$SPLIT/test.txt -O /app/datasets/wikidata/test.txt
+    #wget https://raw.githubusercontent.com/cs-23-mi-10-01/P10/main/datasets/wikidata/$SPLIT/valid.txt -O /app/datasets/wikidata/valid.txt
+    #wget https://raw.githubusercontent.com/cs-23-mi-10-01/P10/main/datasets/wikidata/$SPLIT/train.txt -O /app/datasets/wikidata/train.txt
     
 
     # Gitignore the new container
@@ -69,13 +69,13 @@ From: ubuntu:18.04
 
 
 # TO CREATE THE IMAGE ON THE CLOUD:
-srun singularity build --nv --fakeroot --sandbox de-simple-wikidata14-split3 Singularity.def
+srun singularity build --nv --fakeroot --sandbox de-transe-icews14-split3 Singularity.def
 
 # TO LEARN AND TEST THE MODEL ON THE CLOUD:
 # Fast version:
-srun -w i256-a40-01.srv.aau.dk singularity run --pwd /app/ --nv --writable de-simple-wikidata14-split3 python main.py -dropout 0.4 -se_prop 0.68 -model DE_TransE -ne 4 -neg_ratio 2 -save_each 2
+srun -w i256-a40-01.srv.aau.dk singularity run --pwd /app/ --nv --writable de-transe-icews14-split3 python main.py -dropout 0.4 -se_prop 0.68 -model DE_TransE -ne 4 -neg_ratio 2 -save_each 2
 
 # Version used in paper: 
-srun -w i256-a40-01.srv.aau.dk --gres=gpu singularity run --pwd /app/ --nv --writable de-simple-wikidata14-split3 python main.py -dropout 0.4 -se_prop 0.36 -model DE_TransE -dataset icews14
-srun -w i256-a40-01.srv.aau.dk --gres=gpu singularity run --pwd /app/ --nv --writable de-simple-wikidata14-split3 python main.py -dropout 0.4 -se_prop 0.36 -model DE_DistMult -dataset icews14
-srun -w i256-a40-01.srv.aau.dk --gres=gpu singularity run --pwd /app/ --nv --writable de-simple-wikidata14-split3 python main.py -dropout 0.4 -se_prop 0.68 -model DE_SimplE -dataset icews14
+srun -w i256-a40-01.srv.aau.dk --gres=gpu singularity run --pwd /app/ --nv --writable de-transe-icews14-split3 python main.py -dropout 0.4 -se_prop 0.36 -model DE_TransE -dataset icews14
+srun -w i256-a40-01.srv.aau.dk --gres=gpu singularity run --pwd /app/ --nv --writable de-transe-icews14-split3 python main.py -dropout 0.4 -se_prop 0.36 -model DE_DistMult -dataset icews14
+srun -w i256-a40-01.srv.aau.dk --gres=gpu singularity run --pwd /app/ --nv --writable de-transe-icews14-split3 python main.py -dropout 0.4 -se_prop 0.68 -model DE_SimplE -dataset icews14
