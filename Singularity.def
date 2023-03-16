@@ -11,6 +11,9 @@ From: ubuntu:18.04
 %post
     # Set working dir
     cd /app/
+    
+    # Gitignore the new container
+    echo "*" > /.gitignore
 
     # Pre-requisite installs
     apt-get -y update
@@ -43,10 +46,6 @@ From: ubuntu:18.04
     #wget https://raw.githubusercontent.com/cs-23-mi-10-01/P10/main/datasets/wikidata/$SPLIT/test.txt -O /app/datasets/wikidata/test.txt
     #wget https://raw.githubusercontent.com/cs-23-mi-10-01/P10/main/datasets/wikidata/$SPLIT/valid.txt -O /app/datasets/wikidata/valid.txt
     #wget https://raw.githubusercontent.com/cs-23-mi-10-01/P10/main/datasets/wikidata/$SPLIT/train.txt -O /app/datasets/wikidata/train.txt
-    
-
-    # Gitignore the new container
-    echo "*" > /.gitignore
     
     # Test
     echo "PWD and contents:"
