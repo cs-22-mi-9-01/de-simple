@@ -35,7 +35,7 @@ From: ubuntu:18.04
     . /opt/miniconda/bin/activate tkgc
 
     # Download datasets
-    export SPLIT=3
+    export SPLIT=1
 
     rm -r /app/datasets/*
     mkdir -p /app/datasets/icews14/
