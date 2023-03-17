@@ -51,7 +51,6 @@ class Dataset:
         facts = []
         for line in data:
             elements = line.strip().split("\t")
-
             head_id = self.getEntID(elements[0])
             rel_id = self.getRelID(elements[1])
             tail_id = self.getEntID(elements[2])
@@ -67,9 +66,17 @@ class Dataset:
         """
         for split in ["train", "valid", "test"]:
             for i, fact in enumerate(self.data[split]):
-                fact_date = fact[-1]
-                self.data[split][i] = self.data[split][i][:-1]
-                date = list(map(float, fact_date.split("-")))
+                fact_date = fact[3]
+                self.data[split][i] = self.data[split][i][:3]
+
+                if self.name == "icews14":
+                    date = list(map(float, fact_date.split("-")))
+                elif self.name == "wikidata":
+                    if fact_date != "-":
+                        date = [int(fact_date), 1, 1]
+                    else:
+                        date = [0, 1, 1]
+                
                 self.data[split][i] += date
 
     def numEnt(self):
