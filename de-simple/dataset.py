@@ -71,7 +71,7 @@ class Dataset:
 
                 if self.name == "icews14":
                     date = list(map(float, fact_date.split("-")))
-                elif self.name == "wikidata":
+                elif self.name in ["wikidata", "yago"]:
                     if fact_date != "-":
                         date = [int(fact_date), 1, 1]
                     else:
