@@ -41,15 +41,15 @@ From: ubuntu:18.04
     mkdir -p /app/datasets/icews14/
     mkdir -p /app/datasets/wikidata/
     mkdir -p /app/datasets/yago/
-    wget https://raw.githubusercontent.com/cs-23-mi-10-01/P10/main/datasets/icews14/$SPLIT/test.txt -O /app/datasets/icews14/test.txt
-    wget https://raw.githubusercontent.com/cs-23-mi-10-01/P10/main/datasets/icews14/$SPLIT/valid.txt -O /app/datasets/icews14/valid.txt
-    wget https://raw.githubusercontent.com/cs-23-mi-10-01/P10/main/datasets/icews14/$SPLIT/train.txt -O /app/datasets/icews14/train.txt
-    wget https://raw.githubusercontent.com/cs-23-mi-10-01/P10/main/datasets/wikidata12k/$SPLIT/test.txt -O /app/datasets/wikidata/test.txt
-    wget https://raw.githubusercontent.com/cs-23-mi-10-01/P10/main/datasets/wikidata12k/$SPLIT/valid.txt -O /app/datasets/wikidata/valid.txt
-    wget https://raw.githubusercontent.com/cs-23-mi-10-01/P10/main/datasets/wikidata12k/$SPLIT/train.txt -O /app/datasets/wikidata/train.txt
-    wget https://raw.githubusercontent.com/cs-23-mi-10-01/P10/main/datasets/yago11k/$SPLIT/test.txt -O /app/datasets/yago/test.txt
-    wget https://raw.githubusercontent.com/cs-23-mi-10-01/P10/main/datasets/yago11k/$SPLIT/valid.txt -O /app/datasets/yago/valid.txt
-    wget https://raw.githubusercontent.com/cs-23-mi-10-01/P10/main/datasets/yago11k/$SPLIT/train.txt -O /app/datasets/yago/train.txt
+    wget https://raw.githubusercontent.com/cs-23-mi-10-01/P10/main/datasets/icews14/format_A/split_$SPLIT/test.txt -O /app/datasets/icews14/test.txt
+    wget https://raw.githubusercontent.com/cs-23-mi-10-01/P10/main/datasets/icews14/format_A/split_$SPLIT/valid.txt -O /app/datasets/icews14/valid.txt
+    wget https://raw.githubusercontent.com/cs-23-mi-10-01/P10/main/datasets/icews14/format_A/split_$SPLIT/train.txt -O /app/datasets/icews14/train.txt
+    wget https://raw.githubusercontent.com/cs-23-mi-10-01/P10/main/datasets/wikidata12k/format_A/split_$SPLIT/test.txt -O /app/datasets/wikidata/test.txt
+    wget https://raw.githubusercontent.com/cs-23-mi-10-01/P10/main/datasets/wikidata12k/format_A/split_$SPLIT/valid.txt -O /app/datasets/wikidata/valid.txt
+    wget https://raw.githubusercontent.com/cs-23-mi-10-01/P10/main/datasets/wikidata12k/format_A/split_$SPLIT/train.txt -O /app/datasets/wikidata/train.txt
+    wget https://raw.githubusercontent.com/cs-23-mi-10-01/P10/main/datasets/yago11k/format_A/split_$SPLIT/test.txt -O /app/datasets/yago/test.txt
+    wget https://raw.githubusercontent.com/cs-23-mi-10-01/P10/main/datasets/yago11k/format_A/split_$SPLIT/valid.txt -O /app/datasets/yago/valid.txt
+    wget https://raw.githubusercontent.com/cs-23-mi-10-01/P10/main/datasets/yago11k/format_A/split_$SPLIT/train.txt -O /app/datasets/yago/train.txt
     
     # Test
     echo "PWD and contents:"
